@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Museo de la Informática - CETis 50</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8B1538 0%, #a01a45 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #8B1538;
+            border-bottom: 3px solid #8B1538;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #8B1538;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        h4 {
+            color: #555;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .objetivo {
+            background: #fff9e6;
+            border-left: 5px solid #8B1538;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background-color: #8B1538;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .cronograma-item {
+            background: #f9f9f9;
+            border-left: 4px solid #8B1538;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .cronograma-item h3 {
+            margin-top: 0;
+            color: #8B1538;
+        }
+
+        .kiosco-diagram {
+            background: #2c2c2c;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .kiosco-diagram pre {
+            margin: 0;
+            white-space: pre;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        .roles-semana {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .rol-card {
+            background: #f9f9f9;
+            border: 2px solid #8B1538;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .rol-card h4 {
+            color: #8B1538;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        .materiales-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .material-item {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 3px solid #8B1538;
+        }
+
+        .entregables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .entregable-card {
+            background: linear-gradient(135deg, #8B1538 0%, #a01a45 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .entregable-card h4 {
+            color: white;
+            margin: 0 0 10px 0;
+        }
+
+        footer {
+            background: #2c2c2c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #8B1538;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏛️ Proyecto Final: Chatbot Guía Virtual + Kiosco Interactivo</h1>
+        <p>"Adivina el Sesgo en IA" - Museo de la Informática – CETis 50</p>
+    </header>
+
+    <div class="container">
+        <!-- OBJETIVO GENERAL -->
+        <div class="section">
+            <h2>🎯 Objetivo General</h2>
+            <div class="objetivo">
+                <p>Diseñar y desarrollar una <strong>experiencia educativa interactiva</strong> que integre:</p>
+                <ol>
+                    <li>Un <strong>Chatbot guía virtual</strong> para acompañar a los visitantes del Museo de la Informática del CETis 50.</li>
+                    <li>Un <strong>Kiosco físico "Adivina el Sesgo en IA"</strong>, que muestre de forma divertida cómo los algoritmos de inteligencia artificial pueden presentar sesgos en sus decisiones.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- EQUIPO DE TRABAJO -->
+        <div class="section">
+            <h2>👩‍💻 Equipo de Trabajo</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Responsabilidad Principal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ruiz Rodríguez Erick David</strong></td>
+                        <td>Programador líder</td>
+                        <td>Chatbot en Flet + Ollama, integración Scratch + Makey Makey</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Valadez Molina Dulce María</strong></td>
+                        <td>Programadora / Contenido</td>
+                        <td>Casos éticos de IA, guion y textos del kiosco</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Solís Reducindo Valeria Lisette</strong></td>
+                        <td>Diseñadora</td>
+                        <td>Diseño y construcción física del kiosco</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CRONOGRAMA -->
+        <div class="section">
+            <h2>🗓️ Cronograma y Avances</h2>
+            
+            <div class="cronograma-item">
+                <h3>📆 Revisión 1 – Jueves 13 de noviembre</h3>
+                <p><span class="badge">Objetivo</span> Mostrar prototipo funcional</p>
+                <ul>
+                    <li>Chatbot responde y guía sobre 1 sala.</li>
+                    <li>Scratch con 1–2 casos programados.</li>
+                    <li>Primer botón del kiosco conectado a Makey Makey.</li>
+                </ul>
+            </div>
+
+            <div class="cronograma-item">
+                <h3>📆 Revisión 2 – Jueves 20 de noviembre</h3>
+                <p><span class="badge">Objetivo</span> Proyecto casi terminado</p>
+                <ul>
+                    <li>Kiosco completo con los 4 casos funcionales.</li>
+                    <li>Chatbot optimizado y estable.</li>
+                    <li>Señalética y poster ético listos.</li>
+                </ul>
+            </div>
+
+            <div class="cronograma-item">
+                <h3>🎓 Presentación Final – Jueves 27 de noviembre</h3>
+                <p><span class="badge">Entrega Total</span></p>
+                <p>Chatbot ✅ + Kiosco ✅ + Video ✅ + Poster ✅ + Demo en vivo ✅</p>
+            </div>
+        </div>
+
+        <!-- CHATBOT -->
+        <div class="section">
+            <h2>🤖 Chatbot Guía Virtual</h2>
+            
+            <h3>🔸 Descripción</h3>
+            <p>Chatbot desarrollado en <strong>Flet (Python)</strong> con modelo local de <strong>Ollama</strong>. Capaz de responder preguntas sobre las salas del Museo de la Informática y datos curiosos sobre la historia de la programación.</p>
+            
+            <h3>🔸 Características</h3>
+            <ul>
+                <li>Voz automática (TTS streaming).</li>
+                <li>Interfaz con colores <strong>guinda y blanco (CETis 50)</strong>.</li>
+                <li>Mensaje de bienvenida sin audio al abrir la app.</li>
+                <li>Prompt reducido para <strong>mayor velocidad</strong>.</li>
+                <li>Compatible con Windows y Linux.</li>
+            </ul>
+        </div>
+
+        <!-- KIOSCO INTERACTIVO -->
+        <div class="section">
+            <h2>🏗️ Detalles del Kiosco Interactivo</h2>
+            <p style="text-align: center; font-style: italic; color: #8B1538; font-size: 1.2em;">"Adivina el Sesgo en IA"</p>
+            
+            <h3>🔸 Descripción</h3>
+            <p>Una <strong>maqueta educativa física</strong> donde los visitantes responden preguntas sobre decisiones de IA con sesgos reales. Funciona mediante <strong>botones táctiles</strong> conectados a <strong>Makey Makey</strong>, que comunican con un <strong>juego en Scratch</strong>.</p>
+            
+            <h3>🔸 Componentes</h3>
+            
+            <h4>Parte física</h4>
+            <ul>
+                <li><strong>Estructura:</strong>
+                    <ul>
+                        <li>Planchas de <strong>papel batería</strong> (preferentemente) o <strong>papel cascarón reforzado</strong>, medidas <strong>60 × 80 cm</strong>.</li>
+                        <li>Si se requiere más firmeza, reforzar con <strong>bastidor de madera delgada</strong> o <strong>foamboard</strong> posterior.</li>
+                    </ul>
+                </li>
+                <li>Frente forrado con <strong>colores institucionales del CETis 50 (guinda y blanco)</strong>.</li>
+                <li><strong>Título:</strong> <em>"🕵️ Adivina el Sesgo en IA"</em></li>
+                <li><strong>Subtítulo:</strong> <em>"Museo de la Informática – CETis 50"</em></li>
+                <li><strong>Computadora</strong> al centro (mostrando Scratch).</li>
+                <li><strong>3 botones táctiles A / B / C</strong>, hechos con secciones de <strong>papel aluminio</strong> entre capas de cartón / batería.</li>
+                <li><strong>Barra TIERRA</strong>: tira de aluminio (20 cm) en la parte inferior, para completar el circuito.</li>
+                <li>Instrucción visible: <em>"Toca la Tierra con una mano y elige tu respuesta con la otra"</em>.</li>
+                <li>Cableado organizado detrás del panel, conectado al Makey Makey.</li>
+            </ul>
+
+            <h4>Parte digital</h4>
+            <ul>
+                <li><strong>Juego Scratch</strong> con 4 casos:
+                    <ol>
+                        <li>Amazon – IA de contratación.</li>
+                        <li>Google Photos – Clasificación de rostros.</li>
+                        <li>Microsoft Tay – Aprendizaje automático con tweets.</li>
+                        <li>COMPAS – Predicción de reincidencia penal.</li>
+                    </ol>
+                </li>
+                <li>Mapeo de teclas Makey Makey:
+                    <ul>
+                        <li>W → Opción A</li>
+                        <li>A → Opción B</li>
+                        <li>S → Opción C</li>
+                        <li>Espacio → Siguiente caso</li>
+                    </ul>
+                </li>
+                <li>Cada caso incluye pregunta, 3 opciones de respuesta y una explicación breve.</li>
+            </ul>
+
+            <h3>🔸 Funcionamiento del kiosco</h3>
+            <ol>
+                <li>Visitante toca la <strong>barra TIERRA</strong>.</li>
+                <li>Lee el caso en la <strong>computadora</strong>.</li>
+                <li>Elige su respuesta tocando un botón (A, B o C).</li>
+                <li>Scratch muestra si fue correcta y explica el sesgo.</li>
+                <li>Presiona <strong>Espacio</strong> para avanzar al siguiente caso.</li>
+            </ol>
+
+            <h3>🔸 Esquema simple (vista frontal)</h3>
+            <div class="kiosco-diagram">
+                <pre>
+┌────────────────────────────────┐
+│ 🕵️ ADIVINA EL SESGO EN IA       │
+│ Museo de la Informática - CETis 50 │
+├────────────────────────────────┤
+│       [ Pantalla - Computadora ]   │
+│                                    │
+│   [A]       [B]       [C]          │
+│────────────────────────────────────│
+│     Toca la TIERRA y responde      │
+└────────────────────────────────┘
+                </pre>
+            </div>
+        </div>
+
+        <!-- ROLES POR SEMANA -->
+        <div class="section">
+            <h2>⚙️ Roles por Semana</h2>
+            
+            <h3>Semana 1 (8–13 nov) – Avance 1</h3>
+            <div class="roles-semana">
+                <div class="rol-card">
+                    <h4>Erick</h4>
+                    <ul>
+                        <li>Probar chatbot en Flet + Ollama.</li>
+                        <li>Crear primer caso en Scratch.</li>
+                        <li>Conectar Makey Makey para prueba.</li>
+                    </ul>
+                </div>
+                <div class="rol-card">
+                    <h4>Dulce</h4>
+                    <ul>
+                        <li>Redactar los 4 casos (pregunta, opciones, explicación).</li>
+                        <li>Crear guion de demostración y textos orientativos.</li>
+                    </ul>
+                </div>
+                <div class="rol-card">
+                    <h4>Valeria</h4>
+                    <ul>
+                        <li>Hacer boceto digital del kiosco con medidas.</li>
+                        <li>Prototipo del primer botón y barra TIERRA.</li>
+                        <li>Conseguir materiales (papel batería, aluminio y forros).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Semana 2 (14–20 nov) – Avance 2</h3>
+            <div class="roles-semana">
+                <div class="rol-card">
+                    <h4>Erick</h4>
+                    <ul>
+                        <li>Integrar los 4 casos en Scratch.</li>
+                        <li>Sincronizar Makey Makey + kiosco.</li>
+                        <li>Ajustar tiempos de respuesta y pantallas de inicio/final.</li>
+                    </ul>
+                </div>
+                <div class="rol-card">
+                    <h4>Dulce</h4>
+                    <ul>
+                        <li>Revisar textos (evidencia ética y ortografía).</li>
+                        <li>Diseñar poster informativo "Sesgos en la IA".</li>
+                        <li>Pruebas de usuario (3–5 visitantes).</li>
+                    </ul>
+                </div>
+                <div class="rol-card">
+                    <h4>Valeria</h4>
+                    <ul>
+                        <li>Construir panel final (60 × 80 cm).</li>
+                        <li>Forrar en guinda/blanco y pegar rotulado.</li>
+                        <li>Montar cableado y detalles decorativos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Semana 3 (21–27 nov) – Preparación final</h3>
+            <div class="roles-semana">
+                <div class="rol-card">
+                    <h4>Erick</h4>
+                    <ul>
+                        <li>Montar demo completo (chatbot + kiosco).</li>
+                        <li>Revisar conexión Makey Makey.</li>
+                        <li>Generar guion técnico para presentación.</li>
+                    </ul>
+                </div>
+                <div class="rol-card">
+                    <h4>Dulce</h4>
+                    <ul>
+                        <li>Preparar presentación oral y diapositivas.</li>
+                        <li>Imprimir poster final (60 × 80 cm).</li>
+                    </ul>
+                </div>
+                <div class="rol-card">
+                    <h4>Valeria</h4>
+                    <ul>
+                        <li>Ajustes finales, limpieza y transporte del kiosco.</li>
+                        <li>Tomar fotografías para portafolio.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATERIALES -->
+        <div class="section">
+            <h2>📦 Materiales Básicos (Actualizados para México)</h2>
+            <div class="materiales-list">
+                <div class="material-item">2 planchas de <strong>papel batería</strong> (60 × 80 cm)</div>
+                <div class="material-item">Alternativa: <strong>papel cascarón</strong> reforzado o <strong>foamboard</strong></div>
+                <div class="material-item">Bastidor ligero de madera (opcional)</div>
+                <div class="material-item">Papel guinda y blanco para forrar</div>
+                <div class="material-item">Papel aluminio (pads y barra TIERRA)</div>
+                <div class="material-item"><strong>Computadora/Laptop</strong> con Scratch</div>
+                <div class="material-item"><strong>Makey Makey</strong> + cables cocodrilo</div>
+                <div class="material-item">Silicón caliente, tijeras, regla, pegamento</div>
+                <div class="material-item">Impresiones: título, subtítulo, logos, instrucciones</div>
+            </div>
+        </div>
+
+        <!-- PRESENTACIONES -->
+        <div class="section">
+            <h2>🎤 Presentaciones Programadas</h2>
+            
+            <h3>Revisión 1 – 13 de noviembre</h3>
+            <ul>
+                <li>➡ Demo chatbot.</li>
+                <li>➡ Scratch con 2 casos.</li>
+                <li>➡ Kiosco parcial.</li>
+            </ul>
+
+            <h3>Revisión 2 – 20 de noviembre</h3>
+            <ul>
+                <li>➡ Kiosco completo funcional.</li>
+                <li>➡ Chatbot optimizado.</li>
+                <li>➡ Poster final.</li>
+            </ul>
+
+            <h3>Entrega final – 27 de noviembre</h3>
+            <ul>
+                <li>➡ Presentación 10 min: Chatbot + Kiosco + Video + Reflexión.</li>
+                <li>➡ Prueba pública del kiosco.</li>
+            </ul>
+        </div>
+
+        <!-- ENTREGABLES -->
+        <div class="section">
+            <h2>📚 Entregables Finales</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Elemento</th>
+                        <th>Responsable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Técnico</td>
+                        <td>Chatbot funcional en Flet</td>
+                        <td>Erick</td>
+                    </tr>
+                    <tr>
+                        <td>Físico</td>
+                        <td>Kiosco interactivo completo</td>
+                        <td>Valeria</td>
+                    </tr>
+                    <tr>
+                        <td>Pedagógico</td>
+                        <td>Casos y poster de sesgo ética</td>
+                        <td>Dulce</td>
+                    </tr>
+                    <tr>
+                        <td>Audiovisual</td>
+                        <td>Video demostrativo (60–90 seg)</td>
+                        <td>Todos</td>
+                    </tr>
+                    <tr>
+                        <td>Documentación</td>
+                        <td>Informe + presentación PDF</td>
+                        <td>Dulce</td>
+                    </tr>
+                    <tr>
+                        <td>Vivo</td>
+                        <td>Demo final en museo</td>
+                        <td>Todos</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>🏛️ <strong>Museo de la Informática - CETis 50</strong></p>
+        <p>Proyecto Final 2025 | Chatbot + Kiosco Interactivo "Adivina el Sesgo en IA"</p>
+    </footer>
+</body>
+</html>
